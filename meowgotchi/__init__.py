@@ -1,0 +1,2 @@
+"""Meowgotchi desktop pet package."""
+
