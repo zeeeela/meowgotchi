@@ -1,10 +1,18 @@
+import subprocess
 import sys
+import atexit
 
 from PySide6.QtWidgets import QApplication, QStyleFactory
 
 from meowgotchi.menu_page import MenuPage
 from meowgotchi.pet import Pet
 
+def cleanup_ollama():
+    """Kill Ollama when app exits"""
+    try:
+        subprocess.run(["pkill", "-f", "ollama"], check=False)
+    except FileNotFoundError:
+        pass
 
 class AppController:
     def __init__(self):
@@ -25,4 +33,6 @@ def main():
     app.setStyle(QStyleFactory.create("Fusion"))
     controller = AppController()
     controller.show_pet()
+
+    atexit.register(cleanup_ollama)
     sys.exit(app.exec())
