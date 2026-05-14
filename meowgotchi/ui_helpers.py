@@ -34,16 +34,16 @@ def make_btn(text, bg, fg, slot, PIXEL_FONT, icon1=None, icon2=None):
             btn.released.connect(lambda: btn.setIcon(keep_ratio_icon(icon1)))
 
     btn.setCursor(Qt.CursorShape.PointingHandCursor)
-    btn.setFixedHeight(40 if icon1 is not None else 10)
+    btn.setFixedHeight(40 if icon1 is not None else 40)
     align_style = "text-align: left;" if icon1 is not None else ""
     btn.setStyleSheet(f"""
         QPushButton {{
             background-color: {bg};
             color: {fg};
-            font-size: 12px;
+            font-size: 13px;
             font-weight: bold;
             border-radius: 8px;
-            padding: 0 10px;
+            padding: 8px;
             font-family: '{PIXEL_FONT}';
             {align_style}
         }}

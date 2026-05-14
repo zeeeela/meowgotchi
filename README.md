@@ -13,12 +13,6 @@ ollama pull gemma3:1b
 
 ## Run
 
-Start Ollama if it is not already running:
-
-```bash
-ollama serve
-```
-
 Run the app:
 
 ```bash

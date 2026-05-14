@@ -21,14 +21,14 @@ class Pet(QWidget):
         layout = QVBoxLayout()
         layout.setContentsMargins(0, 0, 0, 0)
         layout.setAlignment(Qt.AlignCenter)
-        layout.setSpacing(3)
+        layout.setSpacing(0)
 
         self.image_label = QLabel()
         self.image_label.setPixmap(self.image)
         layout.addWidget(self.image_label)
 
         self.menu_btn = make_btn(
-            "Menu",
+            "Meniu",
             "transparent",
             "#ad4785",
             on_to_menu or self.on_button_click,
@@ -56,3 +56,4 @@ class Pet(QWidget):
     # Placeholder to check if the button click is working.
     def on_button_click(self):
         print("Meow! The pet was clicked.")
+
