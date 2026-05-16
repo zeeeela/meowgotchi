@@ -5,6 +5,7 @@ import urllib.request
 from meowgotchi.config import OLLAMA_MODEL, OLLAMA_URL
 
 
+
 def chat(messages):
     payload = {
         "model": OLLAMA_MODEL,

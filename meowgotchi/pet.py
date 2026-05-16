@@ -6,7 +6,7 @@ from meowgotchi.ui_helpers import make_btn
 
 
 class Pet(QWidget):
-    def __init__(self, on_to_menu=None):
+    def __init__(self, on_to_menu=None, on_to_research=None, on_to_chat=None):
         super().__init__()
 
         font = QFontDatabase.addApplicationFont(str(FONT_PATH))
@@ -27,15 +27,36 @@ class Pet(QWidget):
         self.image_label.setPixmap(self.image)
         layout.addWidget(self.image_label)
 
-        self.menu_btn = make_btn(
-            "Meniu",
+        self.chat_btn = make_btn(
+            "Chat",
+            "transparent",
+            "#ad4785",
+            on_to_chat or self.on_button_click,
+            PIXEL_FONT,
+            str(MENU_ICON_PATH),
+        )
+        layout.addWidget(self.chat_btn)
+
+        self.research_btn = make_btn(
+            "Research",
+            "transparent",
+            "#ad4785",
+            on_to_research or self.on_button_click,
+            PIXEL_FONT,
+            str(MENU_ICON_PATH),
+        )
+        layout.addWidget(self.research_btn)
+
+
+        self.music_btn = make_btn(
+            "Meowqsic",
             "transparent",
             "#ad4785",
             on_to_menu or self.on_button_click,
             PIXEL_FONT,
             str(MENU_ICON_PATH),
         )
-        layout.addWidget(self.menu_btn)
+        layout.addWidget(self.music_btn)
 
         self.setLayout(layout)
 
