@@ -123,7 +123,7 @@ Edit `meowgotchi/config.py` to change:
 
 Example:
 ```python
-OLLAMA_MODEL = "mistral"                  # Chat model
+OLLAMA_MODEL = "mistral"                 
 OLLAMA_URL = "http://localhost:11434/api/chat"
 OLLAMA_MODEL_RESEARCH_ASSISTANT = "phi3:mini"
 OLLAMA_RESEARCH_ASSISTANT_URL = "http://localhost:11434/api/generate"
@@ -142,7 +142,6 @@ python3 main.py 2>&1 | tee debug.log
 
 Test document chunking and retrieval:
 ```bash
-conda activate rag-phi3  # If using separate env
 python3 -m RAG.try
 ```
 
