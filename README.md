@@ -22,7 +22,7 @@ A cute PySide6 desktop pet application with music player, integrated AI chat, an
 
 1. Clone the repository:
 ```bash
-git clone <repo-url>
+git clone https://github.com/zeeeela/meowgotchi.git
 cd meowgotchi
 ```
 
@@ -39,8 +39,8 @@ pip install -r requirements.txt
 
 4. Pull required Ollama models:
 ```bash
-ollama pull gemma3:1b       # For chat (default)
-ollama pull phi3:mini       # For research assistant (optional)
+ollama pull gemma3:1b       #For chat (default)
+ollama pull phi3:mini       #For research assistant 
 ```
 
 ## Usage
@@ -95,22 +95,22 @@ Popular models to try:
 
 ```
 .
-├── README.md                 # This file
-├── requirements.txt          # Python dependencies
-├── main.py                   # App entry point
-├── chunking.py               # PDF text chunking for RAG
+├── README.md                 #This file
+├── requirements.txt          #Python dependencies
+├── main.py                   #App entry point
+├── chunking.py               #PDF text chunking for RAG
 ├── assets/
-│   └── papers/               # PDF documents for RAG
-│   └── [images, fonts]       # UI assets
-└── meowgotchi/               # Main application package
-    ├── app.py                # QApplication and page routing
-    ├── config.py             # Runtime configuration & Ollama settings
-    ├── pet.py                # Main desktop pet widget
-    ├── menu_page.py          # Chat UI page
-    ├── chat_page.py          # Research/RAG UI page
-    ├── ollama_client.py      # Ollama API client wrapper
-    ├── paths.py              # Asset path resolver
-    ├── ui_helpers.py         # Shared UI utilities
+│   └── papers/               #PDF documents for RAG
+│   └── [images, fonts]       #UI assets
+└── meowgotchi/               #Main application package
+    ├── app.py                #QApplication and page routing
+    ├── config.py             #Runtime configuration & Ollama settings
+    ├── pet.py                #Main desktop pet widget
+    ├── menu_page.py          #Chat UI page
+    ├── chat_page.py          #Research/RAG UI page
+    ├── ollama_client.py      #Ollama API client wrapper
+    ├── paths.py              #Asset path resolver
+    ├── ui_helpers.py         #Shared UI utilities
     └── __init__.py
 ```
 
