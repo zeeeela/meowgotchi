@@ -13,7 +13,7 @@ class AppController:
     def __init__(self):
         self.pet = Pet(on_to_menu=self.show_menu, on_to_research=self.show_research, on_to_chat=self.show_chat)
         self.menu = ChatPage(on_to_pet=self.show_pet)
-        self.menuu = MenuPage(on_to_chat=self.show_chat)
+        self.menuu = MenuPage()
         self.research_page = ResearchChatPage(on_to_pet=self.show_pet)
 
     def show_pet(self):

@@ -4,15 +4,14 @@ from PySide6.QtWidgets import (
     QLabel,
     QWidget,
 )
-from meowgotchi.paths import FONT_PATH, LAYOUT_ICON_PATH
+from meowgotchi.paths import FONT_PATH, LAYOUT_ICON_PATH, PLAY_ICON_PATH, STOP_ICON_PATH, NEXT_ICON_PATH, PREV_ICON_PATH
 from meowgotchi.ui_helpers import make_btn
 import subprocess
 import time
 
 class MenuPage(QWidget):
-    def __init__(self, on_to_chat=None, on_to_song=None):
+    def __init__(self, on_to_song=None):
         super().__init__()
-        self.on_to_chat = on_to_chat
         self.on_to_song = on_to_song
         self.spotify_process = None
 
@@ -25,7 +24,7 @@ class MenuPage(QWidget):
         self.setFixedSize(360, 430)
 
         self.image = QLabel(self)
-        self.image.setGeometry(14, 14, 332, 402)
+        self.image.setGeometry(0, 0, 332, 402)
         self.image.setAlignment(Qt.AlignCenter)
         self.image.setPixmap(
             QPixmap(str(LAYOUT_ICON_PATH)).scaled(
@@ -35,66 +34,72 @@ class MenuPage(QWidget):
             )
         )
 
-        # Properly set callbacks - use if/else instead of 'or'
         song_callback = on_to_song if on_to_song is not None else self.start_spotify_player
-        chat_callback = on_to_chat if on_to_chat is not None else self.on_chat_click
+
+        title = QLabel("Dudu's Meowsic Pick", self)
+        title.setStyleSheet(f"font-family: '{PIXEL_FONT}'; font-size: 16px;")
+        title.setGeometry(0, 82, 320, 30) 
+        title.setAlignment(Qt.AlignCenter)
 
         self.song_btn = make_btn(
-            "meowsic",
+            "",
             "transparent",
-            "#ad4785",
+            "",
             song_callback,
-            PIXEL_FONT)
+            PIXEL_FONT,
+            str(PLAY_ICON_PATH),
+        )
         self.song_btn.setParent(self)
-        self.song_btn.setFixedWidth(120)
+        self.song_btn.setFixedWidth(90)
         
-        self.chat_btn = make_btn(
-            "chat",
-            "transparent",
-            "#ad4785",
-            chat_callback,
-            PIXEL_FONT) 
-        self.chat_btn.setParent(self)
-        self.chat_btn.setFixedWidth(120)
         
         self.stop_btn = make_btn(
-            "stop",
+            "",
             "transparent",
-            "#ad4785",
+            "",
             self.kill_spotify_player,
-            PIXEL_FONT) 
+            PIXEL_FONT,
+            str(STOP_ICON_PATH),
+        ) 
         self.stop_btn.setParent(self)
-        self.stop_btn.setFixedWidth(120)
+        self.stop_btn.setFixedWidth(60)
 
         self.next_btn = make_btn(
-            "next",
+            "",
             "transparent",
-            "#ad4785",
+            "",
             self.next_track,
-            PIXEL_FONT)
+            PIXEL_FONT,
+            str(NEXT_ICON_PATH),
+        )
         self.next_btn.setParent(self)
-        self.next_btn.setFixedWidth(120)
-        self.next_btn.move(30, 250)  # Adjust position as needed
+        self.next_btn.setFixedWidth(80)
         self.next_btn.raise_()
 
 
         self.prev_btn = make_btn(
-            "prev",
+            "",
             "transparent",
-            "#ad4785",
+            "",
             self.prev_track,
-            PIXEL_FONT)
+            PIXEL_FONT,
+            str(PREV_ICON_PATH),
+        )
         self.prev_btn.setParent(self)
-        self.prev_btn.setFixedWidth(120)
-        self.prev_btn.move(120, 250)  # Adjust position as needed
+        self.prev_btn.setFixedWidth(80)
         self.prev_btn.raise_()
 
+        button_spacing = 10
+        button_y = 185
+        group_width = self.prev_btn.width() + self.song_btn.width() + self.next_btn.width() + button_spacing * 2
+        start_x = (self.image.width() - group_width) // 2
 
-        self.song_btn.move(30, 200)
-        self.chat_btn.move(120, 200)
-        self.stop_btn.move(210, 200)
+        self.prev_btn.move(start_x + 6, button_y)
+        self.song_btn.move(start_x + self.prev_btn.width() + button_spacing, button_y)
+        self.next_btn.move(start_x + self.prev_btn.width() + self.song_btn.width() + button_spacing * 2 - 6, button_y)
+
+        self.stop_btn.move(self.image.width() - self.stop_btn.width() - 16, 79)
         self.song_btn.raise_()
-        self.chat_btn.raise_()
         self.stop_btn.raise_()
 
     def on_chat_click(self):
@@ -191,6 +196,7 @@ class MenuPage(QWidget):
             print(f"Error: {e}")
 
     def kill_spotify_player(self):
+        self.hide()
         try:
             if self.spotify_process:
                 self.spotify_process.terminate()
@@ -201,7 +207,7 @@ class MenuPage(QWidget):
             subprocess.run(["pkill", "-9", "spotify_player"], check=False)
             print("Spotify player stopped.")
         except Exception as e:
-            print(f"Error stopping Spotify player: {e}")
+            print(f"Error stopping Spotify playrer: {e}")
 
     def mousePressEvent(self, event):
         self.drag_start_position = event.globalPosition().toPoint() - self.frameGeometry().topLeft()

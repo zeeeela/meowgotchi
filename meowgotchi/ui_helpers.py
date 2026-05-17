@@ -35,7 +35,10 @@ def make_btn(text, bg, fg, slot, PIXEL_FONT, icon1=None, icon2=None):
 
     btn.setCursor(Qt.CursorShape.PointingHandCursor)
     btn.setFixedHeight(40 if icon1 is not None else 40)
-    align_style = "text-align: left;" if icon1 is not None else ""
+    if icon1 is not None:
+        align_style = "text-align: center;" if not text else "text-align: left;"
+    else:
+        align_style = ""
     btn.setStyleSheet(f"""
         QPushButton {{
             background-color: {bg};
