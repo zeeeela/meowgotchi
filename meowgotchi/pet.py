@@ -6,7 +6,7 @@ from meowgotchi.ui_helpers import make_btn
 
 
 class Pet(QWidget):
-    def __init__(self, on_to_menu=None, on_to_research=None, on_to_chat=None):
+    def __init__(self, on_to_menu=None, on_to_research=None, on_to_chat=None, on_to_activity=None):
         super().__init__()
 
         font = QFontDatabase.addApplicationFont(str(FONT_PATH))
@@ -57,6 +57,16 @@ class Pet(QWidget):
             str(MENU_ICON_PATH),
         )
         layout.addWidget(self.music_btn)
+
+        self.github_btn = make_btn(
+            "Github Activity",
+            "transparent",
+            "#ad4785",
+            on_to_activity or self.on_button_click,
+            PIXEL_FONT,
+            str(MENU_ICON_PATH),
+        )
+        layout.addWidget(self.github_btn)
 
         self.setLayout(layout)
 

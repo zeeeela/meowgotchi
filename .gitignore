@@ -7,4 +7,6 @@ venv/
 RAG/
 notes.md
 assets/papers/
-
+debug.log
+assets/github_activity_*.png
+assets/github_activity.csv
