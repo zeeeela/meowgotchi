@@ -10,3 +10,4 @@ assets/papers/
 debug.log
 assets/github_activity_*.png
 assets/github_activity.csv
+mem_leak_solution/
